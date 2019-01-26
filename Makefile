@@ -8,6 +8,9 @@ install: ## Install dependencies
 code-std: ## Standardize the PHP code according to PSR2
 	$(PHP_DOCKER) ./vendor/bin/phpcbf --colors --standard=PSR2 src/ tests/
 
+code-chk: ## Check the PHP code according to PSR2
+	$(PHP_DOCKER) ./vendor/bin/phpcs --colors --standard=PSR2 src/ tests/
+
 test: ## PHPUnit Test
 	$(PHP_DOCKER) ./vendor/bin/phpunit -v --colors=always
 
