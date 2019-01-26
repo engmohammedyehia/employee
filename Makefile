@@ -1,6 +1,8 @@
+PHP_DOCKER=docker run -u root --rm -v ${PWD}:/usr/src/myapp -w /usr/src/myapp php:7.3-fpm php
+COMPOSER=docker run -u root --rm -v ${PWD}:/app composer
 install:
-	docker run -u root -v ${PWD}:/app composer composer install && composer dump-autoload
+	$(COMPOSER) composer install && composer dump-autoload
 std:
-	php vendor/bin/phpcs --standard=PSR2 src/
+	$(PHP_DOCKER) vendor/bin/phpcs --standard=PSR2 src/
 test:
-	php vendor/bin/phpunit
+	$(PHP_DOCKER) vendor/bin/phpunit
