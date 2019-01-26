@@ -6,12 +6,12 @@ class Test
     /**
      * @var string
      */
-	private $name;
+    private $name;
 
     /**
      * @var string|null
      */
-	private $address;
+    private $address;
 
     /**
      * @return string
@@ -44,6 +44,4 @@ class Test
     {
         $this->address = $address;
     }
-
-
 }
