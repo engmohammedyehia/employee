@@ -1,4 +1,4 @@
-PHP_DOCKER=docker run -u root --rm -v ${PWD}:/usr/src/myapp -w /usr/src/myapp php:7.3
+PHP_DOCKER=docker run -u root --rm -v ${PWD}:/usr/src/myapp -w /usr/src/myapp php:7.3-cli
 COMPOSER=docker run -u root --rm -v ${PWD}:/app composer
 
 install:
