@@ -10,7 +10,7 @@ std: ## Check code standard
 	$(PHP_DOCKER) ./vendor/bin/phpcs --standard=PSR2 src/
 
 test: ## PHPUnit Test
-	$(PHP_DOCKER) ./vendor/bin/phpunit
+	$(PHP_DOCKER) ./vendor/bin/phpunit -v --colors=always
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
