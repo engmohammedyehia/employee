@@ -5,8 +5,8 @@ COMPOSER=$(DOCKER) -v ${PWD}:/app composer
 install: ## Install dependencies
 	$(COMPOSER) composer install && composer dump-autoload
 
-std: ## Check code standard
-	$(PHP_DOCKER) ./vendor/bin/phpcs --standard=PSR2 src/
+code-std: ## Standardize the PHP code according to PSR2
+	$(PHP_DOCKER) ./vendor/bin/phpcbf --colors --standard=PSR2 src/ tests/
 
 test: ## PHPUnit Test
 	$(PHP_DOCKER) ./vendor/bin/phpunit -v --colors=always
