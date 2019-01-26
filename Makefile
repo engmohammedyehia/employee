@@ -1,9 +1,16 @@
 DOCKER=docker run -u root --rm
-PHP_DOCKER=$(DOCKER) -v ${PWD}:/usr/src/myapp -w /usr/src/myapp php:7.3-cli
-COMPOSER=$(DOCKER) -v ${PWD}:/app composer
+
+PHP_DOCKER_IMAGE=php:7.3-cli
+COMPOSER_DOCKER_IMAGE=composer
+NODE_DOCKER_IMAGE=node:8-alpine
+
+PHP_DOCKER=$(DOCKER) -v ${PWD}:/usr/src/myapp -w /usr/src/myapp $(PHP_DOCKER_IMAGE)
+NODE_DOCKER=$(DOCKER) -v ${PWD}:/usr/src/app -w /usr/src/app $(NODE_DOCKER_IMAGE)
+COMPOSER=$(DOCKER) -v ${PWD}:/app $(COMPOSER_DOCKER_IMAGE)
 
 install: ## Install dependencies
 	$(COMPOSER) composer install && composer dump-autoload
+	$(NODE_DOCKER) npm install
 
 code-std: ## Standardize the PHP code according to PSR2
 	$(PHP_DOCKER) ./vendor/bin/phpcbf --colors --standard=PSR2 src/ tests/
